@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 10, 2024 at 10:24 AM
+-- Generation Time: May 19, 2024 at 04:52 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -20,6 +20,29 @@ SET time_zone = "+00:00";
 --
 -- Database: `hrms`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_leave`
+--
+
+CREATE TABLE `tbl_leave` (
+  `leave_id` int(20) NOT NULL,
+  `u_id` int(20) NOT NULL,
+  `e_name` varchar(50) NOT NULL,
+  `leave_type` varchar(50) NOT NULL,
+  `start_date` varchar(20) NOT NULL,
+  `end_date` varchar(20) NOT NULL,
+  `leave_status` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tbl_leave`
+--
+
+INSERT INTO `tbl_leave` (`leave_id`, `u_id`, `e_name`, `leave_type`, `start_date`, `end_date`, `leave_status`) VALUES
+(10, 15, 'Leo Canares', 'Vacation Leave', '12/12/12', '12/25/12', 'Approved');
 
 -- --------------------------------------------------------
 
@@ -47,13 +70,21 @@ INSERT INTO `tbl_user` (`u_id`, `u_fname`, `u_lname`, `u_email`, `u_username`, `
 (1, 'Leo Adnmin', 'test', 'leo@test', 'adminleo', '4k35IAeMPdTn6NJELwDlyasqIxuzkY1lzFCQbknsrvQ=', 'Admin', 'Active', ''),
 (9, 'Leo User', 'test', 'test@test', 'userleo', '4k35IAeMPdTn6NJELwDlyasqIxuzkY1lzFCQbknsrvQ=', 'User', 'Active', ''),
 (10, 'maxtest', 'maxmax', 'max@test', 'testmax', '4k35IAeMPdTn6NJELwDlyasqIxuzkY1lzFCQbknsrvQ=', 'User', 'Pending', ''),
-(12, 'leo', 'leo', 'leo@leo', 'leos', '4k35IAeMPdTn6NJELwDlyasqIxuzkY1lzFCQbknsrvQ=', 'User', 'Actice', ''),
-(13, 'kyla', 'kyla', 'kyla@kyla', 'kyla', '4k35IAeMPdTn6NJELwDlyasqIxuzkY1lzFCQbknsrvQ=', 'User', 'Active', ''),
-(14, 'meee', 'meee', 'meeee', 'meeee', 'testtest', 'Admin', 'Active', '');
+(12, 'leo', 'leo', 'leo@leo', 'leos', '4k35IAeMPdTn6NJELwDlyasqIxuzkY1lzFCQbknsrvQ=', 'User', 'Active', 'src/userimages/icons8-male-user-64.png'),
+(13, 'kyla', 'kyla', 'kyla@kyla', 'kyla', '4k35IAeMPdTn6NJELwDlyasqIxuzkY1lzFCQbknsrvQ=', 'Admin', 'Active', ''),
+(14, 'meee', 'meee', 'meeee', 'meeee', 'testtest', 'Admin', 'Active', ''),
+(15, 'ysa', 'ysa', 'ysa@ysa', 'ysa', '73l8gRjwLftklgfdXT+MdiMEjJwGPVMsyVxe16iYpk8=', 'User', 'Active', 'src/userimages/icons8-leave-100.png');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `tbl_leave`
+--
+ALTER TABLE `tbl_leave`
+  ADD PRIMARY KEY (`leave_id`),
+  ADD KEY `uid` (`u_id`);
 
 --
 -- Indexes for table `tbl_user`
@@ -66,10 +97,26 @@ ALTER TABLE `tbl_user`
 --
 
 --
+-- AUTO_INCREMENT for table `tbl_leave`
+--
+ALTER TABLE `tbl_leave`
+  MODIFY `leave_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
 -- AUTO_INCREMENT for table `tbl_user`
 --
 ALTER TABLE `tbl_user`
-  MODIFY `u_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `u_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `tbl_leave`
+--
+ALTER TABLE `tbl_leave`
+  ADD CONSTRAINT `uid` FOREIGN KEY (`u_id`) REFERENCES `tbl_user` (`u_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

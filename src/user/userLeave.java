@@ -50,6 +50,8 @@ public class userLeave extends javax.swing.JFrame {
         ls = new javax.swing.JTextField();
         refresh = new javax.swing.JButton();
         refresh1 = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        en = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -186,6 +188,12 @@ public class userLeave extends javax.swing.JFrame {
         });
         jPanel1.add(refresh1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 290, 90, 40));
 
+        jLabel8.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("Employee Name:");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, -1, 30));
+        jPanel1.add(en, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 110, 170, 30));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -214,8 +222,8 @@ public class userLeave extends javax.swing.JFrame {
        dbConnector dbc = new dbConnector();
        Session sess = Session.getInstance();
 
-        if(dbc.insertData("INSERT INTO leave_tbl(u_id, leave_type, start_date, end_date)VALUES ('"+sess.getUid()+"','" + lt.getSelectedItem() + "',"
-                + "'" + ls.getText() + "','" + le.getText() + "')")){
+        if(dbc.insertData("INSERT INTO tbl_leave(u_id, e_name, leave_type, start_date, end_date, leave_status)VALUES ('"+sess.getUid()+"','" + en.getText() + "','" + lt.getSelectedItem() + "',"
+                + "'" + ls.getText() + "','" + le.getText() + "','Pending')")){
         JOptionPane.showMessageDialog(null, "Sent Successfully");
         userDashboard usd = new userDashboard();
         usd.setVisible(true);
@@ -260,6 +268,7 @@ public class userLeave extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JLabel acc_lname;
     public javax.swing.JLabel acc_name;
+    public javax.swing.JTextField en;
     public javax.swing.JLabel id_num;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
@@ -267,6 +276,7 @@ public class userLeave extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

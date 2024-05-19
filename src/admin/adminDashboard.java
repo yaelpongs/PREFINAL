@@ -256,7 +256,9 @@ public class adminDashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowActivated
     }
     private void jPanel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseClicked
-        // TODO add your handling code here:
+        userForm usf = new userForm();
+           usf.setVisible(true);
+            this.dispose();
     }//GEN-LAST:event_jPanel5MouseClicked
 
     private void jPanel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseClicked

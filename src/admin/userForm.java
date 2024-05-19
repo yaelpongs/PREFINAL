@@ -333,33 +333,7 @@ public class userForm extends javax.swing.JFrame {
     }//GEN-LAST:event_p_editActionPerformed
 
     private void p_edit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_p_edit1ActionPerformed
-         int rowIndex = userTable.getSelectedRow();
 
-        if(rowIndex < 0){
-            JOptionPane.showMessageDialog(null,"Please Select an Item!");
-        }else{
-            try{
-                dbConnector dbc = new dbConnector();
-                TableModel tbl = userTable.getModel();
-                ResultSet rs = dbc.getData("SELECT * FROM tbl_user WHERE u_id = '"+tbl.getValueAt(rowIndex, 0)+"'");
-                if(rs.next()){
-                    IndividualPrinting ipt = new IndividualPrinting();
-                    ipt.uid.setText(""+rs.getInt("u_id"));
-                    ipt.fn.setText(""+rs.getString("u_fname"));
-                    ipt.ln.setText(""+rs.getString("u_lname"));
-                    ipt.em.setText(""+rs.getString("u_email"));
-                    ipt.un.setText(""+rs.getString("u_username"));
-                    ipt.at.setText(""+rs.getString("u_type"));
-                    ipt.st.setText(""+rs.getString("u_status"));
-                    ipt.image.setIcon(ipt.ResizeImage(rs.getString("u_image"), null, ipt.image));
-                    
-                    ipt.setVisible(true);
-                    this.dispose();
-                }
-            }catch(SQLException ex){
-                System.out.println(""+ex);
-            }
-        }
     }//GEN-LAST:event_p_edit1ActionPerformed
 
     /**

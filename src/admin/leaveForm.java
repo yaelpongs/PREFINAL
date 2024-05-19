@@ -37,8 +37,8 @@ public class leaveForm extends javax.swing.JFrame {
         
           try{
             dbConnector dbc = new dbConnector();
-            ResultSet rs = dbc.getData("SELECT  leave_id, u_id, leave_type, start_date, end_date FROM leave_tbl");
-            userTable.setModel(DbUtils.resultSetToTableModel(rs));
+            ResultSet rs = dbc.getData("SELECT  leave_id, u_id, e_name,  leave_type, start_date, end_date, leave_status FROM tbl_leave");
+            leaveTable.setModel(DbUtils.resultSetToTableModel(rs));
              rs.close();
         }catch(SQLException ex){
             System.out.println("Errors: "+ex.getMessage());
@@ -64,11 +64,24 @@ public class leaveForm extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         acc_name = new javax.swing.JLabel();
-        p_addd = new javax.swing.JButton();
-        p_edit = new javax.swing.JButton();
         p_edit1 = new javax.swing.JButton();
+        p_edit2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        userTable = new javax.swing.JTable();
+        leaveTable = new javax.swing.JTable();
+        jLabel7 = new javax.swing.JLabel();
+        ls = new javax.swing.JComboBox<>();
+        eid = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        en = new javax.swing.JTextField();
+        ed = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        lid = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        lt = new javax.swing.JTextField();
+        sd = new javax.swing.JTextField();
 
         jButton3.setBackground(new java.awt.Color(249, 118, 31));
         jButton3.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 18)); // NOI18N
@@ -104,11 +117,11 @@ public class leaveForm extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(200, 200, 200)
+                .addGap(92, 92, 92)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 205, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 325, Short.MAX_VALUE)
                 .addComponent(jLabel3)
-                .addGap(201, 201, 201))
+                .addGap(189, 189, 189))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -117,7 +130,7 @@ public class leaveForm extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 0, 890, 90));
@@ -132,27 +145,19 @@ public class leaveForm extends javax.swing.JFrame {
         acc_name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         acc_name.setText("NAME");
 
-        p_addd.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 24)); // NOI18N
-        p_addd.setText("ADD");
-        p_addd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                p_adddActionPerformed(evt);
-            }
-        });
-
-        p_edit.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 24)); // NOI18N
-        p_edit.setText("EDIT");
-        p_edit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                p_editActionPerformed(evt);
-            }
-        });
-
         p_edit1.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 24)); // NOI18N
         p_edit1.setText("PRINT");
         p_edit1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 p_edit1ActionPerformed(evt);
+            }
+        });
+
+        p_edit2.setFont(new java.awt.Font("Gill Sans MT Condensed", 0, 24)); // NOI18N
+        p_edit2.setText("UPDATE");
+        p_edit2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                p_edit2ActionPerformed(evt);
             }
         });
 
@@ -169,10 +174,9 @@ public class leaveForm extends javax.swing.JFrame {
                         .addGap(0, 36, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(p_addd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(p_edit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(p_edit1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(p_edit2, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(p_edit1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(10, 10, 10)))
                 .addContainerGap())
         );
@@ -183,10 +187,8 @@ public class leaveForm extends javax.swing.JFrame {
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(acc_name, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(86, 86, 86)
-                .addComponent(p_addd, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(p_edit, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(132, 132, 132)
+                .addComponent(p_edit2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(p_edit1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(260, Short.MAX_VALUE))
@@ -194,7 +196,7 @@ public class leaveForm extends javax.swing.JFrame {
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 150, 610));
 
-        userTable.setModel(new javax.swing.table.DefaultTableModel(
+        leaveTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -202,26 +204,88 @@ public class leaveForm extends javax.swing.JFrame {
 
             }
         ));
-        userTable.addMouseListener(new java.awt.event.MouseAdapter() {
+        leaveTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                userTableMouseClicked(evt);
+                leaveTableMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(userTable);
+        jScrollPane1.setViewportView(leaveTable);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, 710, 520));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, 500, 470));
+
+        jLabel7.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Start Date:");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 340, -1, 20));
+
+        ls.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Approved", "Declined", "Pending" }));
+        ls.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lsActionPerformed(evt);
+            }
+        });
+        jPanel1.add(ls, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 480, 180, 30));
+
+        eid.setEnabled(false);
+        eid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eidActionPerformed(evt);
+            }
+        });
+        jPanel1.add(eid, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 180, 180, 30));
+
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Employee Name:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 220, 120, 20));
+
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Employee ID:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 160, -1, -1));
+
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Leave Type:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 280, -1, -1));
+
+        jLabel8.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("Leave Status:");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 460, -1, 20));
+
+        en.setEnabled(false);
+        jPanel1.add(en, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 240, 180, 30));
+
+        ed.setEnabled(false);
+        jPanel1.add(ed, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 420, 180, 30));
+
+        jLabel9.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("Leave ID:");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 100, -1, 20));
+        jPanel1.add(lid, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 120, 180, 30));
+
+        jLabel10.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("End Date:");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 400, -1, 20));
+
+        lt.setEnabled(false);
+        jPanel1.add(lt, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 300, 180, 30));
+
+        sd.setEnabled(false);
+        jPanel1.add(sd, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 360, 180, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 859, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 902, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 610, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 561, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -234,126 +298,53 @@ public class leaveForm extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jLabel3MouseClicked
 
-    private void userTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userTableMouseClicked
-
-    }//GEN-LAST:event_userTableMouseClicked
-
-    private void p_adddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_p_adddActionPerformed
-       creatUserForm cuf = new creatUserForm();
-       cuf.setVisible(true);
-       cuf.remove.setEnabled(false);
-       cuf.select.setEnabled(true);
-       this.dispose();
-    }                                  
-
-    private void p_editMouseClicked(java.awt.event.MouseEvent evt) {                                    
-       int rowIndex = userTable.getSelectedRow();
-       
-       if(rowIndex < 0){
-           JOptionPane.showMessageDialog(null,"Please Select an Item!");           
-       }else{
-           try{
-               dbConnector dbc = new dbConnector();
-               TableModel tbl = userTable.getModel();
-               ResultSet rs = dbc.getData("SELECT * FROM tbl_user WHERE u_id = '"+tbl.getValueAt(rowIndex, 0)+"'");
-                   if(rs.next()){  
-                       creatUserForm cuf = new creatUserForm();
-               cuf.uid.setText(""+rs.getInt("u_id"));
-               cuf.fn.setText(""+rs.getString("u_fname"));
-               cuf.ln.setText(""+rs.getString("u_lname"));
-               cuf.em.setText(""+rs.getString("u_email"));
-               cuf.un.setText(""+rs.getString("u_username"));
-               cuf.pw.setText(""+rs.getString("u_password"));
-               cuf.ut.setSelectedItem(""+rs.getString("u_type"));
-               cuf.us.setSelectedItem(""+rs.getString("u_status"));
-               cuf.image.setIcon(cuf.ResizeImage(rs.getString("u_image"), null, cuf.image));
-               cuf.oldpath = rs.getString("u_image");
-               cuf.path = rs.getString("u_image");
-               cuf.destination = rs.getString("u_image");
-               cuf.add.setEnabled(false);
-               cuf.update.setEnabled(true);
-               cuf.setVisible(true);
-               
-               if(rs.getString("u_image").isEmpty()){
-                   cuf.select.setEnabled(true);
-                   cuf.remove.setEnabled(false);
-                   }else{
-                cuf.select.setEnabled(false);
-                   cuf.remove.setEnabled(true);
-               }
-               this.dispose();
-                   }
-           }catch(SQLException ex){
-               System.out.println(""+ex);
-           }
-       }
-    }//GEN-LAST:event_p_adddActionPerformed
-
-    private void p_editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_p_editActionPerformed
-       int rowIndex = userTable.getSelectedRow();
+    private void leaveTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_leaveTableMouseClicked
+       int rowIndex = leaveTable.getSelectedRow();
 
         if(rowIndex < 0){
             JOptionPane.showMessageDialog(null,"Please Select an Item!");
         }else{
             try{
                 dbConnector dbc = new dbConnector();
-                TableModel tbl = userTable.getModel();
-                ResultSet rs = dbc.getData("SELECT * FROM tbl_user WHERE u_id = '"+tbl.getValueAt(rowIndex, 0)+"'");
+                TableModel tbl = leaveTable.getModel();
+                ResultSet rs = dbc.getData("SELECT * FROM tbl_leave WHERE leave_id = '"+tbl.getValueAt(rowIndex, 0)+"'");
                 if(rs.next()){
-                    creatUserForm cuf = new creatUserForm();
-                    cuf.uid.setText(""+rs.getInt("u_id"));
-                    cuf.fn.setText(""+rs.getString("u_fname"));
-                    cuf.ln.setText(""+rs.getString("u_lname"));
-                    cuf.em.setText(""+rs.getString("u_email"));
-                    cuf.un.setText(""+rs.getString("u_username"));
-                    cuf.pw.setText(""+rs.getString("u_password"));
-                    cuf.ut.setSelectedItem(""+rs.getString("u_type"));
-                    cuf.us.setSelectedItem(""+rs.getString("u_status"));
-                    cuf.image.setIcon(cuf.ResizeImage(rs.getString("u_image"), null, cuf.image));
-                    cuf.oldpath = rs.getString("u_image");
-                    cuf.path = rs.getString("u_image");
-                    cuf.destination = rs.getString("u_image");
-                    cuf.add.setEnabled(false);
-                    cuf.update.setEnabled(true);
-                    cuf.setVisible(true);
-
-                    if(rs.getString("u_image").isEmpty()){
-                        cuf.select.setEnabled(true);
-                        cuf.remove.setEnabled(false);
-                    }else{
-                        cuf.select.setEnabled(false);
-                        cuf.remove.setEnabled(true);
-                    }
-                    this.dispose();
+                    lid.setText(""+rs.getInt("leave_id"));
+                    eid.setText(""+rs.getString("u_id"));
+                    en.setText(""+rs.getString("e_name"));
+                    lt.setText(""+rs.getString("leave_type"));
+                   sd.setText(""+rs.getString("start_date"));
+                    ed.setText(""+rs.getString("end_date"));
+                    ls.setSelectedItem(""+rs.getString("leave_status"));
                 }
             }catch(SQLException ex){
                 System.out.println(""+ex);
             }
         }
-    }//GEN-LAST:event_p_editActionPerformed
+    }//GEN-LAST:event_leaveTableMouseClicked
 
     private void p_edit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_p_edit1ActionPerformed
-         int rowIndex = userTable.getSelectedRow();
+         int rowIndex = leaveTable.getSelectedRow();
 
         if(rowIndex < 0){
             JOptionPane.showMessageDialog(null,"Please Select an Item!");
         }else{
             try{
                 dbConnector dbc = new dbConnector();
-                TableModel tbl = userTable.getModel();
-                ResultSet rs = dbc.getData("SELECT * FROM tbl_user WHERE u_id = '"+tbl.getValueAt(rowIndex, 0)+"'");
+                TableModel tbl = leaveTable.getModel();
+                ResultSet rs = dbc.getData("SELECT * FROM tbl_leave WHERE leave_id = '"+tbl.getValueAt(rowIndex, 0)+"'");
                 if(rs.next()){
-                    IndividualPrinting ipt = new IndividualPrinting();
-                    ipt.uid.setText(""+rs.getInt("u_id"));
-                    ipt.fn.setText(""+rs.getString("u_fname"));
-                    ipt.ln.setText(""+rs.getString("u_lname"));
-                    ipt.em.setText(""+rs.getString("u_email"));
-                    ipt.un.setText(""+rs.getString("u_username"));
-                    ipt.at.setText(""+rs.getString("u_type"));
-                    ipt.st.setText(""+rs.getString("u_status"));
-                    ipt.image.setIcon(ipt.ResizeImage(rs.getString("u_image"), null, ipt.image));
-                    
-                    ipt.setVisible(true);
+                    leavePrinting lpt = new leavePrinting();
+                    lpt.lid.setText(""+rs.getInt("leave_id"));
+                   lpt.eid.setText(""+rs.getInt("u_id"));
+                    lpt.en.setText(""+rs.getString("e_name"));
+                    lpt.lt.setText(""+rs.getString("leave_type"));
+                    lpt.sd.setText(""+rs.getString("start_date"));
+                    lpt.ed.setText(""+rs.getString("end_date"));
+                    lpt.ls.setText(""+rs.getString("leave_status"));
+
+
+                    lpt.setVisible(true);
                     this.dispose();
                 }
             }catch(SQLException ex){
@@ -361,6 +352,22 @@ public class leaveForm extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_p_edit1ActionPerformed
+
+    private void lsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lsActionPerformed
+
+    private void eidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eidActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_eidActionPerformed
+
+    private void p_edit2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_p_edit2ActionPerformed
+       dbConnector dbc = new dbConnector();
+       dbc.updateData("UPDATE tbl_leave SET leave_status = '"+ls.getSelectedItem()+"'");
+          leaveForm lvf = new leaveForm();
+                lvf.setVisible(true);
+                this.dispose();
+    }//GEN-LAST:event_p_edit2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -400,18 +407,31 @@ public class leaveForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JLabel acc_name;
+    public javax.swing.JTextField ed;
+    public javax.swing.JTextField eid;
+    public javax.swing.JTextField en;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton p_addd;
-    private javax.swing.JButton p_edit;
+    private javax.swing.JTable leaveTable;
+    public javax.swing.JTextField lid;
+    public javax.swing.JComboBox<String> ls;
+    public javax.swing.JTextField lt;
     private javax.swing.JButton p_edit1;
-    private javax.swing.JTable userTable;
+    private javax.swing.JButton p_edit2;
+    public javax.swing.JTextField sd;
     // End of variables declaration//GEN-END:variables
 }
